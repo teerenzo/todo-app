@@ -5,7 +5,7 @@ export default function LoginComponent() {
 
     const authContext = useAuth();
 
-    const [username, setUsername] = useState('teerenzo')
+    const [username, setUsername] = useState('tee')
 
     const [password, setPassword] = useState('')
 
@@ -21,8 +21,8 @@ export default function LoginComponent() {
         setPassword(event.target.value)
     }
 
-    function handleSubmit() {
-        if(authContext.login(username,password)){
+    async function handleSubmit() {
+        if(await authContext.login(username,password)){
             navigate(`/welcome/${username}`)
         } else {
             setShowErrorMessage(true)

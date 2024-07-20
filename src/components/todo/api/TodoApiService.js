@@ -1,22 +1,14 @@
-import axios from 'axios'
 
 // export function retrieveHelloWorldBean(){
 //     return axios.get('http://localhost:8080/hello-world-bean')
 // }
-
-const apiClient = axios.create({
-    baseURL: 'http://localhost:8080'
-})
+import { apiClient } from './ApiClient'
 
 export const retrieveHelloWorldBean 
-    = () => axios.get('/hello-world-bean')
+    = () => apiClient.get('/hello-world-bean')
 
     export const retrieveAllTodosByUser
-    = (username) => apiClient.get(`/users/${username}/todos`,{
-        headers:{
-            Authorization: 'Basic dGVlOjEyMzQ1'
-        }
-    })
+    = (username) => apiClient.get(`/users/${username}/todos`)
 
     export const deleteTodoApi = (username, id) => apiClient.delete(`/users/${username}/todos/${id}`)
 
@@ -25,8 +17,4 @@ export const retrieveHelloWorldBean
 
     export const updateTodoApi = (username, id, todo) => apiClient.put(`/users/${username}/todos/${id}`, todo)
 
-    export const createTodoApi = (todo) => apiClient.post(`/users/${todo.username}/todos`, todo,{
-        headers:{
-            Authorization: 'Basic dGVlOjEyMzQ1'
-        }
-    })
+    export const createTodoApi = (todo) => apiClient.post(`/users/${todo.username}/todos`, todo)
